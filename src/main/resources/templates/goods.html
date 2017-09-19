@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>商品列表</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>
+                        编号
+                    </th>
+                    <th>
+                        产品
+                    </th>
+                    <th>
+                        价格
+                    </th>
+                    <th>
+                        类型
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr th:each="food:${list}">
+                    <td th:text="${food.id}">
+                        1
+                    </td>
+                    <td th:text="${food.name}">
+                        TB - Monthly
+                    </td>
+                    <td th:text="${food.price}">
+                        01/04/2012
+                    </td>
+                    <td th:text="${food.typeId}">
+                        Default
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <ul class="pagination">
+                <li>
+                    <a th:href="@{'/list?page='+${page-1}}">Prev</a>
+                </li>
+                <li>
+                    <a th:href="@{'/list?page=1'}">1</a>
+                </li>
+                <li>
+                    <a th:href="@{'/list?page=2'}">2</a>
+                </li>
+                <li>
+                    <a th:href="@{'/list?page=3'}">3</a>
+                </li>
+                <li>
+                    <a th:href="@{'/list?page=4'}">4</a>
+                </li>
+                <li>
+                    <a th:href="@{'/list?page=5'}">5</a>
+                </li>
+                <li>
+                    <a th:if="${totalPage}" th:href="@{'/list?page='+${page+1}}">Next</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
