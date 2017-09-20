@@ -9,13 +9,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 
-@RestController
+@RestController//只返回JSON信息
 public class GoodsController {
     @Autowired
     private GoodsService goodsService;
-    @GetMapping("/goods")
 
+    /**
+     *获取所有商品信息
+     * @param response
+     * @return
+     */
+    @GetMapping("/goods")
     public FoodsVo getGoodsInfo(HttpServletResponse response){
+        //解决跨域问题
         response.setHeader("Access-Control-Allow-Origin", "*");
         return goodsService.getGoodsInfo();
     }

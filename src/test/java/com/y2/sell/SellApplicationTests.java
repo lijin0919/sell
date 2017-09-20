@@ -3,6 +3,7 @@ package com.y2.sell;
 import com.y2.sell.dao.FoodRepository;
 import com.y2.sell.dao.FoodTypeRepository;
 import com.y2.sell.dao.SellerInfoRepository;
+import com.y2.sell.dao.mapper.SellerInfoMapper;
 import com.y2.sell.enity.Food;
 import com.y2.sell.enity.FoodType;
 import com.y2.sell.enity.SellerInfo;
@@ -61,6 +62,15 @@ public class SellApplicationTests {
 		FoodType foodType = new FoodType();
 		foodType.setName("我最爱");
 		foodTypeRepository.save(foodType);
+	}
+
+	@Autowired
+	private SellerInfoMapper mapper;
+	@Test
+	public void mybatis(){
+		SellerInfo sellerInfo = mapper.getSellerInfo();
+		System.out.println(sellerInfo);
+
 	}
 
 }
