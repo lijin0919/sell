@@ -1,5 +1,7 @@
 package com.y2.sell.controller;
 
+import com.y2.sell.dao.SellerInfoRepository;
+import com.y2.sell.enity.SellerInfo;
 import com.y2.sell.service.GoodsService;
 import com.y2.sell.vo.FoodsVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +26,11 @@ public class GoodsController {
         //解决跨域问题
         response.setHeader("Access-Control-Allow-Origin", "*");
         return goodsService.getGoodsInfo();
+    }
+    @Autowired
+    private SellerInfoRepository sellerInfoRepository;
+    @GetMapping("/se")
+    public SellerInfo getSellerInfo(){
+        return sellerInfoRepository.findOne(1);
     }
 }

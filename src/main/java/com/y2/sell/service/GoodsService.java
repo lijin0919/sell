@@ -29,17 +29,18 @@ public class GoodsService {
 //    @Cacheable(value = "goods")
     public FoodsVo getGoodsInfo(){
 
-        String key = "goods";
-        ValueOperations<String, FoodsVo> operations = redisTemplate.opsForValue();
-        // 缓存存在
-        boolean hasKey = redisTemplate.hasKey(key);
-        if (hasKey) {
-
-            FoodsVo foodsVo = operations.get(key);
-
-            System.out.println("通过缓存"+foodsVo.toString());
-            return foodsVo;
-        }
+//        String key = "goods";
+//        //将FoodsVo这个对象缓存进redis
+//        ValueOperations<String, FoodsVo> operations = redisTemplate.opsForValue();
+//        // 缓存存在
+//        boolean hasKey = redisTemplate.hasKey(key);//获取key
+//        if (hasKey) {
+//
+//            FoodsVo foodsVo = operations.get(key);//将对象保存到redis
+//
+//            System.out.println("通过缓存"+foodsVo.toString());
+//            return foodsVo;
+//        }
 //找到所有类型FoodType
         List<FoodType> foodTypeList = foodTypeRepository.findAll();
 //        List<Food> foodList = foodRepository.findAllByTypeId()
@@ -48,12 +49,16 @@ public class GoodsService {
         foodsVo.setErrno(0);
         foodsVo.setData(foodTypeList);
         // 插入缓存
-        operations.set(key, foodsVo);
+//        operations.set(key, foodsVo);
         System.out.println("插入缓存");
         return foodsVo;
     }
 
     public Page<Food> getGoodsList(Pageable pageable){
        return foodRepository.findAll(pageable);
+    }
+
+    public Page<Food> getList(Pageable pageable){
+        return foodRepository.findAll(pageable);
     }
 }

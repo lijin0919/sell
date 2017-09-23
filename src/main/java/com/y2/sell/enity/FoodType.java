@@ -16,7 +16,7 @@ import java.util.List;
 @Data
 public class FoodType {
 
-    private String name = "热销榜";
+    private String name;
     @Id//主键
     @GeneratedValue//自增
     private Integer type = 1;
